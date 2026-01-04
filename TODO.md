@@ -1,0 +1,3 @@
+- [x] Remove 'Login' from footer Quick Links
+- [x] Enlarge footer logo to h-16
+- [x] Enlarge navbar logo to h-10
