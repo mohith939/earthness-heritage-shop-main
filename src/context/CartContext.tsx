@@ -46,17 +46,17 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (item: Omit<CartItem, 'quantity'>) => {
+  const addToCart = (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
       if (existingItem) {
         return prevCart.map(cartItem =>
           cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            ? { ...cartItem, quantity: cartItem.quantity + (item.quantity || 1) }
             : cartItem
         );
       } else {
-        return [...prevCart, { ...item, quantity: 1 }];
+        return [...prevCart, { ...item, quantity: item.quantity || 1 }];
       }
     });
   };

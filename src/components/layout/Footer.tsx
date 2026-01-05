@@ -43,18 +43,17 @@ export const Footer = () => {
             <h4 className="font-display text-sm uppercase tracking-widest mb-6">
               Categories
             </h4>
-            <ul className="space-y-3">
-              {["Spices", "Herbs", "Grains", "Dried Goods", "Artisanal"].map((item) => (
-                <li key={item}>
-                  <Link
-                    to="/shop"
-                    className="font-body text-background/80 hover:text-background transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </li>
+            <div className="grid grid-cols-4 gap-2">
+              {["Fruit Powders", "Veg Powders", "Flower Powders", "Millets", "Flakes", "Spices", "Jaggery", "Honey"].map((item) => (
+                <Link
+                  key={item}
+                  to={`/shop?category=${item.toLowerCase().replace(" ", "-")}`}
+                  className="font-body text-background/80 hover:text-background transition-colors text-sm"
+                >
+                  {item}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Contact */}
