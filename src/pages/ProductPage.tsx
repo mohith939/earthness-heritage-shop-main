@@ -2,9 +2,13 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { RetroBadge } from "@/components/shared/RetroBadge";
 import { VintageSeparator } from "@/components/shared/VintageSeparator";
+import { PageTransition } from "@/components/shared/PageTransition";
+import { ProductRecommendations } from "@/components/shared/ProductRecommendations";
+import { TrustBadges } from "@/components/shared/TrustBadges";
+import { ProductZoom } from "@/components/shared/ProductZoom";
 import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
-import { ArrowLeft, Minus, Plus, Leaf, MapPin, Heart, Package, MessageCircle } from "lucide-react";
+import { ArrowLeft, Minus, Plus, Leaf, MapPin, Package, MessageCircle, Star, StarHalf } from "lucide-react";
 import { useState } from "react";
 
 const ProductPage = () => {
@@ -16,21 +20,24 @@ const ProductPage = () => {
 
   if (!product) {
     return (
-      <main className="min-h-screen py-20">
-        <div className="container mx-auto px-4 text-center">
-          <span className="text-6xl mb-4 block">🌾</span>
-          <h1 className="font-display text-3xl font-bold mb-4">Product Not Found</h1>
-          <Button variant="retro" asChild>
-            <Link to="/shop">Back to Shop</Link>
-          </Button>
-        </div>
-      </main>
+      <PageTransition>
+        <main className="min-h-screen py-20">
+          <div className="container mx-auto px-4 text-center">
+            <span className="text-6xl mb-4 block">🌾</span>
+            <h1 className="font-display text-3xl font-bold mb-4">Product Not Found</h1>
+            <Button variant="retro" asChild>
+              <Link to="/shop">Back to Shop</Link>
+            </Button>
+          </div>
+        </main>
+      </PageTransition>
     );
   }
 
   return (
-    <main className="min-h-screen py-12">
-      <div className="container mx-auto px-4">
+    <PageTransition>
+      <main className="min-h-screen py-12">
+        <div className="container mx-auto px-4">
         {/* Breadcrumb */}
         <Link
           to="/shop"
@@ -44,13 +51,11 @@ const ProductPage = () => {
           {/* Product Image */}
           <div className="animate-fade-up">
             <div className="retro-card p-0 overflow-hidden">
-              <div className="aspect-square bg-secondary">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              <img
+                src={product.image}
+                alt={product.name}
+                className="aspect-[4/3] bg-secondary object-contain w-full h-full"
+              />
             </div>
             {/* Badges under image */}
             <div className="flex flex-wrap gap-2 mt-4">
@@ -59,6 +64,18 @@ const ProductPage = () => {
                   {badge}
                 </RetroBadge>
               ))}
+            </div>
+
+            {/* Rating */}
+            <div className="flex items-center gap-2 mt-4">
+              <div className="flex">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star key={star} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <span className="font-body text-sm text-muted-foreground">
+                (4.8) • 127 reviews
+              </span>
             </div>
           </div>
 
@@ -89,44 +106,59 @@ const ProductPage = () => {
               </div>
             </div>
 
-            {/* Quantity & Add to Cart */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <div className="flex items-center border-2 border-foreground rounded-full">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-3 hover:bg-secondary rounded-l-full transition-colors"
-                >
-                  <Minus className="h-4 w-4" />
-                </button>
-                <span className="w-16 text-center font-display font-semibold">
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="p-3 hover:bg-secondary rounded-r-full transition-colors"
-                >
-                  <Plus className="h-4 w-4" />
-                </button>
+            {/* Quantity Selector */}
+            <div className="mb-6">
+              <label className="font-display text-sm uppercase tracking-widest text-muted-foreground mb-3 block">
+                Quantity
+              </label>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center border-2 border-foreground rounded-full overflow-hidden">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="p-3 hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={quantity <= 1}
+                  >
+                    <Minus className="h-4 w-4" />
+                  </button>
+                  <span className="w-16 text-center font-display font-semibold py-3">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="p-3 hover:bg-secondary transition-colors"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </button>
+                </div>
+                <div className="text-right">
+                  <p className="font-display text-lg font-bold text-warm-brown">
+                    ${(product.price * quantity).toFixed(2)}
+                  </p>
+                  <p className="font-body text-xs text-muted-foreground">
+                    Total
+                  </p>
+                </div>
               </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <Button
                 variant="vintage"
                 size="lg"
-                className="flex-1"
-                onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })}
+                className="w-full py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image, quantity })}
               >
                 Add to Cart
               </Button>
               <Button
                 variant="retro"
                 size="lg"
-                className="flex-1"
+                className="w-full py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 onClick={() => window.open(`https://wa.me/919392633211?text=${encodeURIComponent(`Hi, I want to buy ${product.name} from Earthness Heritage Shop.`)}`, '_blank')}
               >
                 <MessageCircle className="h-5 w-5 mr-2" />
                 Buy Now
-              </Button>
-              <Button variant="retro" size="icon" className="h-12 w-12">
-                <Heart className="h-5 w-5" />
               </Button>
             </div>
 
@@ -180,8 +212,15 @@ const ProductPage = () => {
             </p>
           </div>
         </section>
+
+        {/* Product Recommendations */}
+        <ProductRecommendations currentProductId={product.id} />
+
+        {/* Trust Badges */}
+        <TrustBadges />
       </div>
     </main>
+    </PageTransition>
   );
 };
 

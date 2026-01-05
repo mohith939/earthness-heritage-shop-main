@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { VintageSeparator } from "@/components/shared/VintageSeparator";
 import { RetroBadge } from "@/components/shared/RetroBadge";
 import { Link } from "react-router-dom";
-import { Leaf, Globe, Heart, Users } from "lucide-react";
+import { Leaf, Globe, Heart, Users, Sprout, Shield, Award, Truck } from "lucide-react";
 
 const About = () => {
   return (
@@ -12,10 +12,10 @@ const About = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <RetroBadge className="mb-4">Our Story</RetroBadge>
           <h1 className="font-display text-5xl md:text-6xl font-bold mb-6">
-            About EARTHNESS
+            About Earthness
           </h1>
           <p className="font-body text-xl text-muted-foreground leading-relaxed">
-            Connecting farms to the world, one harvest at a time.
+            From Farm to Globe
           </p>
         </div>
 
@@ -26,12 +26,25 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-up">
               <div className="retro-card p-0 overflow-hidden">
-                <div className="aspect-[4/3] bg-secondary flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <span className="text-8xl mb-4 block">👨‍🌾</span>
-                    <p className="font-display text-sm uppercase tracking-widest text-muted-foreground">
-                      Hand-drawn illustration of a farmer
-                    </p>
+                <div className="aspect-[4/3] bg-gradient-to-br from-warm-brown/10 to-secondary flex items-center justify-center relative">
+                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KPGcgZmlsbD0iIzlDOTlBMCIgZmlsbC1vcGFjaXR5PSIwLjA1Ij4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPgo8L2c+CjwvZz4KPC9zdmc+')] opacity-30"></div>
+                  <div className="text-center p-8 relative z-10">
+                    <div className="flex justify-center items-center mb-6">
+                      <div className="bg-white/90 backdrop-blur-sm rounded-full p-6 shadow-lg">
+                        <span className="text-6xl">🌱</span>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex justify-center items-center gap-2">
+                        <Sprout className="h-5 w-5 text-warm-brown" />
+                        <span className="font-display text-sm uppercase tracking-widest text-warm-brown font-semibold">
+                          Sustainable Farming
+                        </span>
+                      </div>
+                      <p className="font-body text-xs text-muted-foreground max-w-xs">
+                        Connecting local farms with global markets through ethical trade practices
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -39,27 +52,17 @@ const About = () => {
 
             <div className="animate-fade-up delay-200">
               <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
-                From Humble Roots
+                Our Journey
               </h2>
               <div className="space-y-4 font-body text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  In 1952, nestled in the heart of the countryside, the first 
-                  EARTHNESS seed was planted. What began as a small family 
-                  operation—trading spices with neighboring villages—has 
-                  blossomed into a global network of passionate farmers and 
-                  artisans.
+                  Earthness celebrates the journey of nature's bounty from the heart of local farms to the tables of the world. Inspired by sustainable practices and ethical trade, we bridge the gap between farmers and consumers, ensuring every product carries freshness, quality, and authenticity.
                 </p>
                 <p>
-                  Our founder, Henri Beaumont, believed that the finest 
-                  ingredients shouldn't be locked away in distant lands. His 
-                  vision was simple: bring the world's best to every kitchen, 
-                  while ensuring every farmer receives fair value for their craft.
+                  Our vision is to honor the earth and the people who cultivate it. By connecting local farms with international markets, Earthness doesn't just export products—it exports trust, health, and natural goodness.
                 </p>
                 <p>
-                  Today, three generations later, we remain true to that vision. 
-                  Every product in our collection is personally sourced, 
-                  rigorously tested, and lovingly packaged with the same care 
-                  Henri showed to his very first customers.
+                  Every grain, spice, and product tells a story—of care, cultivation, and culture—and we bring that story to the world with pride.
                 </p>
               </div>
             </div>
@@ -83,35 +86,47 @@ const About = () => {
             {[
               {
                 icon: Leaf,
-                title: "Organic Always",
-                desc: "We partner only with certified organic farms. No pesticides, no shortcuts, no compromises.",
+                title: "Sustainability",
+                desc: "Respecting the earth in every step",
+                gradient: "from-green-50 to-emerald-50",
+                iconBg: "from-green-100 to-emerald-100",
+              },
+              {
+                icon: Shield,
+                title: "Transparency",
+                desc: "Honest sourcing and fair trade",
+                gradient: "from-blue-50 to-cyan-50",
+                iconBg: "from-blue-100 to-cyan-100",
+              },
+              {
+                icon: Award,
+                title: "Quality",
+                desc: "Premium products delivered globally",
+                gradient: "from-amber-50 to-orange-50",
+                iconBg: "from-amber-100 to-orange-100",
               },
               {
                 icon: Globe,
-                title: "Global Roots",
-                desc: "From Ceylon to Provence, we travel the world to find the finest ingredients at their source.",
-              },
-              {
-                icon: Heart,
-                title: "Fair Trade",
-                desc: "Our farmers earn living wages. When they thrive, their communities flourish.",
-              },
-              {
-                icon: Users,
-                title: "Family First",
-                desc: "We work with multi-generational family farms who share our passion for quality.",
+                title: "Global Reach",
+                desc: "Connecting farmers to international markets",
+                gradient: "from-purple-50 to-indigo-50",
+                iconBg: "from-purple-100 to-indigo-100",
               },
             ].map((value, index) => (
               <div
                 key={value.title}
-                className="retro-card text-center animate-fade-up"
+                className="retro-card text-center animate-fade-up hover:shadow-xl transition-all duration-300 group cursor-pointer"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <value.icon className="h-10 w-10 mx-auto mb-4 text-warm-brown" />
-                <h3 className="font-display text-lg font-semibold mb-3">
+                <div className={`bg-gradient-to-br ${value.gradient} p-6 rounded-full mx-auto w-20 h-20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <div className={`bg-gradient-to-br ${value.iconBg} p-3 rounded-full`}>
+                    <value.icon className="h-8 w-8 text-warm-brown" />
+                  </div>
+                </div>
+                <h3 className="font-display text-lg font-semibold mb-3 text-foreground group-hover:text-warm-brown transition-colors">
                   {value.title}
                 </h3>
-                <p className="font-body text-sm text-muted-foreground">
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">
                   {value.desc}
                 </p>
               </div>
@@ -123,17 +138,28 @@ const About = () => {
 
         {/* Quote */}
         <section className="py-16">
-          <div className="retro-card max-w-3xl mx-auto text-center py-12 relative">
-            <span className="absolute top-4 left-4 text-2xl text-foreground/20">❝</span>
-            <span className="absolute bottom-4 right-4 text-2xl text-foreground/20">❞</span>
-            
-            <p className="font-display text-2xl md:text-3xl italic mb-6 px-8">
-              "The earth laughs in flowers, and we harvest that laughter 
-              to share with the world."
-            </p>
-            <p className="font-body text-muted-foreground">
-              — Henri Beaumont, Founder (1952)
-            </p>
+          <div className="retro-card max-w-4xl mx-auto text-center py-16 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-warm-brown/5 via-transparent to-warm-brown/5"></div>
+            <div className="absolute top-4 left-4 text-4xl text-warm-brown/20">❝</div>
+            <div className="absolute bottom-4 right-4 text-4xl text-warm-brown/20">❞</div>
+
+            <div className="relative z-10">
+              <div className="flex justify-center mb-6">
+                <div className="bg-warm-brown/10 p-3 rounded-full">
+                  <Globe className="h-12 w-12 text-warm-brown" />
+                </div>
+              </div>
+              <p className="font-display text-2xl md:text-3xl italic mb-6 px-8 text-foreground leading-relaxed">
+                "From Farm to Globe – Every product carries the essence of nature's bounty and human dedication."
+              </p>
+              <div className="flex items-center justify-center gap-2">
+                <div className="h-px w-8 bg-warm-brown/30"></div>
+                <p className="font-body text-sm text-muted-foreground font-medium">
+                  Earthness Mission Statement
+                </p>
+                <div className="h-px w-8 bg-warm-brown/30"></div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -173,16 +199,24 @@ const About = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
-            Ready to Taste the Difference?
-          </h2>
-          <p className="font-body text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-            Explore our collection and bring the world's finest to your kitchen.
-          </p>
-          <Button variant="vintage" size="lg" asChild>
-            <Link to="/shop">Visit Our Shop</Link>
-          </Button>
+        <section className="py-20 text-center relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-warm-brown/5 via-transparent to-warm-brown/5 rounded-3xl"></div>
+          <div className="relative z-10">
+            <div className="flex justify-center mb-6">
+              <div className="bg-warm-brown/10 p-4 rounded-full">
+                <Truck className="h-12 w-12 text-warm-brown" />
+              </div>
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
+              Ready to Taste the Difference?
+            </h2>
+            <p className="font-body text-lg text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed">
+              Explore our collection and bring the world's finest to your kitchen.
+            </p>
+            <Button variant="vintage" size="lg" asChild className="shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Link to="/shop">Visit Our Shop</Link>
+            </Button>
+          </div>
         </section>
       </div>
     </main>

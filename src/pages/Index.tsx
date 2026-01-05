@@ -4,6 +4,9 @@ import { CategoryCard } from "@/components/shared/CategoryCard";
 import { ProductCard } from "@/components/shared/ProductCard";
 import { VintageSeparator } from "@/components/shared/VintageSeparator";
 import { RetroBadge } from "@/components/shared/RetroBadge";
+import { PageTransition } from "@/components/shared/PageTransition";
+import { TrustBadges } from "@/components/shared/TrustBadges";
+import { TestimonialsSection } from "@/components/shared/TestimonialsSection";
 import { products, categories } from "@/data/products";
 import { Leaf, Truck, Award, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -52,9 +55,10 @@ const Index = () => {
   const featuredProducts = products.slice(0, 4);
 
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-10 pb-20 md:pb-32 overflow-hidden">
+    <PageTransition>
+      <main className="min-h-screen">
+        {/* Hero Section */}
+        <section className="relative pt-10 pb-20 md:pb-32 overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute top-10 left-10 text-6xl opacity-20 animate-float">🌿</div>
         <div className="absolute bottom-10 right-10 text-6xl opacity-20 animate-float delay-300">🌾</div>
@@ -62,12 +66,6 @@ const Index = () => {
         <div className="absolute top-1/3 right-5 text-4xl opacity-10">✦</div>
 
         <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="animate-fade-up">
-            <RetroBadge variant="default" className="mb-6">
-              Est. 1952
-            </RetroBadge>
-          </div>
-
           <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold mb-6 animate-fade-up delay-100">
             EARTHNESS
           </h1>
@@ -107,33 +105,10 @@ const Index = () => {
         </div>
       </section>
 
+
+
       {/* Trust Badges */}
-      <section className="py-12 border-y-2 border-foreground/20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { icon: Leaf, label: "100% Organic", desc: "Certified Pure" },
-              { icon: Truck, label: "Farm Direct", desc: "No Middlemen" },
-              { icon: Award, label: "Premium Quality", desc: "Hand Selected" },
-              { icon: Heart, label: "Ethically Sourced", desc: "Fair Trade" },
-            ].map((item, index) => (
-              <div
-                key={item.label}
-                className="flex flex-col items-center text-center animate-fade-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <item.icon className="h-8 w-8 mb-3 text-warm-brown" />
-                <span className="font-display text-sm uppercase tracking-widest mb-1">
-                  {item.label}
-                </span>
-                <span className="font-body text-xs text-muted-foreground">
-                  {item.desc}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TrustBadges />
 
       {/* Categories Section */}
       <section className="py-20">
@@ -149,7 +124,7 @@ const Index = () => {
 
           <VintageSeparator ornament="wheat" />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 mt-12">
             {categories.map((category, index) => (
               <div
                 key={category.name}
@@ -180,7 +155,7 @@ const Index = () => {
 
           <VintageSeparator ornament="leaf" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mt-12">
             {featuredProducts.map((product, index) => (
               <div
                 key={product.id}
@@ -199,6 +174,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
 
       {/* Story Banner */}
       <section className="py-20">
@@ -249,6 +227,7 @@ const Index = () => {
         </div>
       </section>
     </main>
+    </PageTransition>
   );
 };
 
